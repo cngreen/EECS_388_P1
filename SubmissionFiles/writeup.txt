@@ -1,0 +1,13 @@
+# Question 1
+MD5 is susceptible to length extension attacks because the input message length can be taken advantage of.  We can add a message to the existing
+message and we can hash a valid signature because we are able to gain information about the state of the hash function, and we are able to manipulate the state of the hash function.  We are able to take advantage of the fact that we can compute the hash of longer messages using m and the padding.  The hash of m does not change and we can use the state of that hash when we change the message.  Therefore, we can change the length of m.
+HMAC is not susceptible to length extension attacks because there's two rounds of hashing.  The first round of hashing would have the same
+susceptibility as MD5, however because of the second round of hashing, the length of the message can no longer be changed for the outer hash.
+The inner hash provides a unique fingerprint for the message key combination and the outer hash works as a message authentication code.  The attacked is attempting to append data to the message, not to the MAC.  The attacker cannot adjust the length of the message in this context.
+
+# Question 2
+We are able to find two "blobs" that has to the same value for MD5.  An attacker could easily find something that hashes to the same MD5 as the 
+benign program and create a virus program.  The attacker could then get this virus signed by the company of the benign program.  Then, with the signature and matching MD5 hash, the attacker could distribute this virus program as a seemingly valid version of the virus program.
+
+# Question 3
+A key with an exponent this large would guarantee that the encrypted message c = m^e would "wrap around" the modulus n. If it doesn't wrap around, an attacker can easily just reverse normal exponentiation rather than reverse modular exponentiation, which is much more difficult.
