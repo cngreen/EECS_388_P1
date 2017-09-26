@@ -2,13 +2,13 @@ from roots import *
 import hashlib
 
 import sys
+
 message = sys.argv[1]
 
 
 
 if __name__ == "__main__":
-	print sys.argv[1]
-	message = sys.argv[1]
+	#message = sys.argv[1]
 	
 	m = hashlib.sha256()
 	m.update(message)
@@ -31,6 +31,8 @@ if __name__ == "__main__":
 	print '\n'
 	forged_signature = forged_signature + end
 	forged_signature = int(forged_signature, 16)
-	s = integer_nthroot(forged_signature, 3)
-	print s[0]
-	print integer_to_base64(s[0])
+	cube_root = integer_nthroot(forged_signature, 3)
+	if cube_root[1]:
+		print integer_to_base64(cube_root[0])
+	else:
+		print integer_to_base64(cube_root[0]+ 1)
